@@ -1,0 +1,31 @@
+{
+  "name": "tomoxlending-reminder",
+  "version": "1.0.0",
+  "description": "TomoX is a decentralized exchange+lending protocol on core layer of TomoChain blockchain. Due to decentralization, there is no option like email, phone number ... to remind borrower about their loans when they are going to expire. This tool helps to watch a TOMO address and send an alert (required slack/telegram) if there is any imcoming liquidation on their account",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thanhnguyennguyen/tomoxlending-reminder.git"
+  },
+  "keywords": [
+    "tomox",
+    "tomochain",
+    "tomoxlending",
+    "p2p",
+    "reminder"
+  ],
+  "author": "NguyenNguyen (nguyenbk92@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thanhnguyennguyen/tomoxlending-reminder/issues"
+  },
+  "homepage": "https://github.com/thanhnguyennguyen/tomoxlending-reminder#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "get-json": "^1.0.1",
+    "noti_bot": "^1.0.1"
+  }
+}
