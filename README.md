@@ -1,2 +1,2 @@
 # tomoxlending-reminder
-remind borrower about their loan which going to expire
+TomoX is a decentralized exchange+lending protocol on core layer of TomoChain blockchain. Due to decentralization, there is no option like email, phone number ... to remind borrower about their loans when they are going to expire. This tool helps to watch a TOMO address and send an alert (required slack/telegram) if there is any imcoming liquidation on their account
