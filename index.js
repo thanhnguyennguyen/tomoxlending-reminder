@@ -11,7 +11,7 @@ const main = async () => {
     let addresses = process.env.TOMO_ADDRESS.split(',')
     for (let address of addresses) {
         let trades
-        await getJSON(process.env.TOMOSCAN_API + '/lending/trades?user=' + address, function(error, response) {
+        await getJSON(process.env.TOMOSCAN_API + '/lending/trades?status=OPEN&user=' + address, function(error, response) {
             trades = response.items
         })
         if (trades == undefined || trades.length == 0) {
