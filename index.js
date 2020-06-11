@@ -18,7 +18,7 @@ const main = async () => {
             continue
         }
         for (let trade of trades) {
-            if (trade == undefined || trade.liquidationTime == undefined || trade.hash == undefined) {
+            if (trade == undefined || trade.liquidationTime == undefined || trade.hash == undefined || trade.borrower != address) {
                 continue
             }
             let now = Date.now()
