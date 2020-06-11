@@ -21,7 +21,7 @@ const main = async () => {
             if (trade == undefined || trade.liquidationTime == undefined || trade.hash == undefined) {
                 continue
             }
-            let now = Date.now
+            let now = Date.now()
             if (now + 86400 * parseInt(process.env.NUMBER_OF_DAY_BEFORE_MATURITY_DATE) >= parseInt(trade.liquidationTime)) {
                 msg += "\n https://scan.tomochain.com/lending/trades/" + trade.hash
             }
