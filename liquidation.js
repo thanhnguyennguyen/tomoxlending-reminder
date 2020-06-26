@@ -11,8 +11,7 @@ const axios = require('axios')
 
 const main = async () => {
     let msg = ""
-    let expired = [],
-        liquidated = []
+    let liquidated = []
 
 
     let tomoxPrice = {}
@@ -29,10 +28,6 @@ const main = async () => {
         for (let trade of trades) {
             if (trade == undefined || trade.liquidationTime == undefined || trade.hash == undefined || trade.borrower != address) {
                 continue
-            }
-            let now = Date.now()
-            if (now + 86400 * parseInt(process.env.NUMBER_OF_DAY_BEFORE_MATURITY_DATE) >= parseInt(trade.liquidationTime)) {
-                expired.push("https://scan.tomochain.com/lending/trades/" + trade.hash)
             }
             let currentPrice = tomoxPrice[trade.collateralToken + trade.lendToken]
             if (currentPrice == undefined) {
@@ -52,16 +47,11 @@ const main = async () => {
             }
         }
     }
-    if (expired.length > 0) {
-        msg += "The following loans need to be repayed in " + process.env.NUMBER_OF_DAY_BEFORE_MATURITY_DATE + " day(s) \n" + expired.toString().split(",").join("\n")
-
-    }
     if (liquidated.length > 0) {
         msg += "The following loans may be liquidated in the next epoch. Please topup as soon as possible \n" + liquidated.toString()
     }
 
     if (msg != '') {
-        msg = "The following loans need to be repayed in " + process.env.NUMBER_OF_DAY_BEFORE_MATURITY_DATE + " day(s)" + msg
         notifySlack(msg, process.env.SLACK_HOOK_KEY, process.env.SLACK_CHANNEL, process.env.SLACK_BOTNAME, process.env.SLACK_BOT_ICON)
         notifyTelegram(msg, process.env.TELEGRAM_TOKEN, process.env.TELEGRAM_CHAT)
     }
