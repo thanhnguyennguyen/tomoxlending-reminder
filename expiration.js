@@ -34,7 +34,7 @@ const main = async () => {
         }
     }
     if (expired.length > 0) {
-        msg += "The following loans need to be repayed in " + process.env.NUMBER_OF_DAY_BEFORE_MATURITY_DATE + " day(s) \n" + expired.toString()
+        msg += "The following loans need to be repayed in " + process.env.NUMBER_OF_DAY_BEFORE_MATURITY_DATE + " day(s) \n" + expired.toString().split(",").join("\n")
 
     }
 
