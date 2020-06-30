@@ -48,7 +48,7 @@ const main = async () => {
         }
     }
     if (liquidated.length > 0) {
-        msg += "The following loans may be liquidated in the next epoch. Please topup as soon as possible \n" + liquidated.toString()
+        msg = "The following loans may be liquidated in the next epoch. Please topup as soon as possible \n" + liquidated.toString().split(",").join("\n\n")
     }
 
     if (msg != '') {
