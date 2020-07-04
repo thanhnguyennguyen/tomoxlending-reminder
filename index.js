@@ -61,7 +61,6 @@ const main = async () => {
     }
 
     if (msg != '') {
-        msg = "The following loans need to be repayed in " + process.env.NUMBER_OF_DAY_BEFORE_MATURITY_DATE + " day(s)" + msg
         notifySlack(msg, process.env.SLACK_HOOK_KEY, process.env.SLACK_CHANNEL, process.env.SLACK_BOTNAME, process.env.SLACK_BOT_ICON)
         notifyTelegram(msg, process.env.TELEGRAM_TOKEN, process.env.TELEGRAM_CHAT)
     }
