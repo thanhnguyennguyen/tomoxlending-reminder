@@ -15,7 +15,8 @@ const main = async () => {
         liquidated = []
 
 
-    let tomoxPrice = {}, liquidationTime
+    let tomoxPrice = {},
+        liquidationTime
     let addresses = process.env.TOMO_ADDRESS.split(',')
     for (let address of addresses) {
         let trades
@@ -30,9 +31,9 @@ const main = async () => {
                 continue
             }
             let now = Date.now()
-            if (now + 86400 * parseInt(process.env.NUMBER_OF_DAY_BEFORE_MATURITY_DATE) >= parseInt(trade.liquidationTime)) {
-                liquidationTime = new Date(parseInt(trade.liquidationTime)*1000).toLocaleDateString("en-US")
-		    expired.push("https://scan.tomochain.com/lending/trades/" + trade.hash)
+            if (now + 86400 * parseInt(process.env.NUMBER_OF_DAY_BEFORE_MATURITY_DATE) >= parseInt(trade.liquidationTime) * 1000) {
+                liquidationTime = new Date(parseInt(trade.liquidationTime) * 1000).toLocaleDateString("en-US")
+                expired.push("https://scan.tomochain.com/lending/trades/" + trade.hash)
             }
             let currentPrice = tomoxPrice[trade.collateralToken + trade.lendToken]
             if (currentPrice == undefined) {
@@ -53,7 +54,7 @@ const main = async () => {
         }
     }
     if (expired.length > 0) {
-        msg += "The following loans need to be repayed before " + liquidationTime  + " \n" + expired.toString().split(",").join("\n")
+        msg += "The following loans need to be repayed before " + liquidationTime + " \n" + expired.toString().split(",").join("\n")
 
     }
     if (liquidated.length > 0) {
